@@ -15,9 +15,10 @@ export function showOracleConsult(npcId) {
 
   flavorEl.textContent = npc.flavor ?? '';
 
-  // Reset state
+  // Reset state (clear any leftover inline styles from a previous session)
   hintBox.classList.add('hidden');
   backBtn.classList.add('hidden');
+  topicsEl.style.display = '';
   topicsEl.innerHTML = '';
 
   // Find available topics: hints for items the player doesn't have
