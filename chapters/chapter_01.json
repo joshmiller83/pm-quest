@@ -1,0 +1,379 @@
+{
+  "chapter": 1,
+  "title": "The Initiating Wilds",
+  "process_group": "Initiating",
+  "intro_text": "You have been assigned to a project. Nobody sent you a brief. Nobody sent you a budget. Someone named The Sponsor left a voicemail saying 'we need this done' and then went on a golf trip. Welcome to the Initiating Wilds — a tangled wilderness of undefined objectives and unmet stakeholders, where nothing is official until it's chartered and nobody knows who's in charge until somebody writes it down. That somebody is you. Find the people, document the authority, and get that charter signed. Planning cannot begin until you do.",
+
+  "starting_items": ["business_case"],
+  "carryover_items": [],
+
+  "items": [
+    {
+      "id": "business_case",
+      "name": "The Business Case",
+      "description": "A documented economic feasibility study that establishes why this project is worth doing. It defines objectives, expected benefits, and the reason anyone bothered to call you. Required input for developing the Project Charter.",
+      "type": "artifact",
+      "combat_power": 1
+    },
+    {
+      "id": "project_charter",
+      "name": "Project Charter (Draft)",
+      "description": "The document that officially authorizes the project and gives you, the project manager, the authority to actually do anything. In draft form it is a powerful artifact. Signed, it is law.",
+      "type": "artifact",
+      "combat_power": 3
+    },
+    {
+      "id": "signed_project_charter",
+      "name": "Project Charter (Signed)",
+      "description": "The Business Case walked so this document could run. Signed by the Sponsor. You now have formal authority. The Initiating Wilds tremble.",
+      "type": "artifact",
+      "combat_power": 5
+    },
+    {
+      "id": "agreements",
+      "name": "Agreements",
+      "description": "Contracts, MOUs, SLAs, or even a firm handshake documented on paper. Formal intent between parties. An input to charter development when external organizations are involved.",
+      "type": "artifact",
+      "combat_power": 1
+    },
+    {
+      "id": "expert_judgment_token",
+      "name": "Expert Judgment (Consulted)",
+      "description": "You found someone who has done this before and actually listened to them. Rare. Valuable. This token proves it happened.",
+      "type": "resource",
+      "combat_power": 1
+    },
+    {
+      "id": "stakeholder_interviews",
+      "name": "Stakeholder Interviews",
+      "description": "Notes from conversations with the people who have something to gain or lose from this project. Raw material for the Stakeholder Register. They told you things. Some of it was useful.",
+      "type": "resource",
+      "combat_power": 1
+    },
+    {
+      "id": "stakeholder_register",
+      "name": "Stakeholder Register",
+      "description": "A living document cataloging every individual, group, or organization with skin in this game: their interests, influence, involvement, and potential impact. If they matter to the project, they're in here.",
+      "type": "artifact",
+      "combat_power": 4
+    },
+    {
+      "id": "assumption_log",
+      "name": "Assumption Log",
+      "description": "A record of everything the team is treating as true without proof. Assumptions are not facts. This document at least acknowledges that.",
+      "type": "artifact",
+      "combat_power": 2
+    },
+    {
+      "id": "scope_creep",
+      "name": "Scope Creep",
+      "description": "Nobody asked for this. It arrived anyway. It has no combat value and takes up space in your inventory. This is what happens when you combine things that don't belong together.",
+      "type": "junk",
+      "combat_power": 0
+    },
+    {
+      "id": "undocumented_assumption",
+      "name": "The Undocumented Assumption",
+      "description": "Looked real enough at the time. A byproduct of skipping steps. Useless in combat. Haunts future planning processes.",
+      "type": "junk",
+      "combat_power": 0
+    }
+  ],
+
+  "techniques": [
+    {
+      "id": "expert_judgment",
+      "name": "Expert Judgment",
+      "description": "Consulting someone who has done this before. Applicable to almost every process. The PMBoK mentions it so often it starts to feel like a crutch. It is not a crutch. It is foundational."
+    },
+    {
+      "id": "data_gathering",
+      "name": "Data Gathering",
+      "description": "Brainstorming, interviews, focus groups, questionnaires — any structured method for collecting information from people or records. Different from just asking around."
+    },
+    {
+      "id": "meetings",
+      "name": "Meetings",
+      "description": "Structured interactions between stakeholders to share information, make decisions, or align understanding. Yes, they count as a technique. No, not all of them need to be this long."
+    },
+    {
+      "id": "interpersonal_skills",
+      "name": "Interpersonal & Team Skills",
+      "description": "Active listening, facilitation, conflict management, political awareness. The soft skills that determine whether any of the hard skills actually land."
+    },
+    {
+      "id": "data_representation",
+      "name": "Data Representation",
+      "description": "Stakeholder mapping, power/interest grids, influence/impact matrices. Taking raw information and giving it a shape that supports decisions."
+    }
+  ],
+
+  "recipes": [
+    {
+      "id": "recipe_001",
+      "name": "Initiate Project or Phase",
+      "pmbok_process": "Initiate Project or Phase",
+      "inputs": ["business_case"],
+      "technique": "expert_judgment",
+      "output": "project_charter",
+      "consume_inputs": false,
+      "success_dialog": "You laid out the Business Case before a seasoned advisor and applied Expert Judgment. The why is documented. The objectives are clear. The authority is written down. The Project Charter takes shape — unsigned, but real. Now find the Sponsor.",
+      "failure_hints": {
+        "wrong_technique": "The Business Case is just a document until someone with experience helps shape it into a charter. Try applying Expert Judgment.",
+        "wrong_inputs": "You can't charter a project without first establishing why it exists. Find the Business Case."
+      }
+    },
+    {
+      "id": "recipe_002",
+      "name": "Initiate Project or Phase (with Agreements)",
+      "pmbok_process": "Initiate Project or Phase",
+      "inputs": ["business_case", "agreements"],
+      "technique": "expert_judgment",
+      "output": "project_charter",
+      "consume_inputs": false,
+      "success_dialog": "When external organizations are involved, Agreements become a required input alongside the Business Case. You brought both. The charter reflects the contractual obligations and the business rationale. Solid foundation.",
+      "failure_hints": {
+        "wrong_technique": "Agreements and a Business Case are a strong combination, but you still need Expert Judgment to turn them into a charter.",
+        "wrong_inputs": "For cross-organizational projects, bring both the Business Case and any existing Agreements to the apothecary."
+      }
+    },
+    {
+      "id": "recipe_003",
+      "name": "Identify Stakeholders",
+      "pmbok_process": "Identify Stakeholders",
+      "inputs": ["project_charter", "stakeholder_interviews"],
+      "technique": "data_gathering",
+      "output": "stakeholder_register",
+      "consume_inputs": false,
+      "success_dialog": "You took the charter — which names the project and its purpose — and combined it with actual conversations with actual people. Data Gathering turns raw interviews into structured knowledge. The Stakeholder Register materializes: names, roles, interests, influence levels. Everyone who matters is now documented. The Undocumented Stakeholder will not be pleased.",
+      "failure_hints": {
+        "wrong_technique": "You have the inputs but you're not applying a structured collection method. Try Data Gathering — interviews, specifically.",
+        "wrong_inputs": "The Stakeholder Register needs two things: the project context (that's the Charter) and the raw information about people (that's the Interviews). You're missing one of them."
+      }
+    },
+    {
+      "id": "recipe_004",
+      "name": "Identify Stakeholders (Analysis)",
+      "pmbok_process": "Identify Stakeholders",
+      "inputs": ["project_charter", "stakeholder_interviews"],
+      "technique": "data_representation",
+      "output": "stakeholder_register",
+      "consume_inputs": false,
+      "success_dialog": "Power/interest grids. Influence/impact matrices. You didn't just list stakeholders — you mapped them. The Stakeholder Register is richer for it. This is a valid path. The PMBoK approves.",
+      "failure_hints": {
+        "wrong_technique": "Data Representation works here — but only if you already have the Charter and the Interviews. Check your inputs.",
+        "wrong_inputs": "You need the Charter and raw Stakeholder Interviews before you can represent anything. Go gather first."
+      }
+    },
+    {
+      "id": "recipe_005",
+      "name": "Capture Assumption Log",
+      "pmbok_process": "Initiate Project or Phase",
+      "inputs": ["project_charter"],
+      "technique": "meetings",
+      "output": "assumption_log",
+      "consume_inputs": false,
+      "success_dialog": "The charter names objectives. Meetings with early stakeholders surface what the team is treating as true. You wrote it down. The Assumption Log is a humble document — it doesn't solve problems, it just acknowledges which time bombs you're aware of.",
+      "failure_hints": {
+        "wrong_technique": "Assumptions are surfaced through conversation. Try Meetings.",
+        "wrong_inputs": "You need the Project Charter as a starting point — assumptions are made in context of what the project is trying to do."
+      }
+    }
+  ],
+
+  "nodes": [
+    {
+      "id": "sponsors_office",
+      "name": "The Sponsor's Office",
+      "description": "A corner office with a view and a very full calendar. The Sponsor is rarely here but their signature is the only thing that makes your charter official. This is where your authority comes from — and where the Business Case was born.",
+      "is_crafting_station": false,
+      "is_starting_node": true,
+      "enemy_id": null,
+      "npc_id": "the_sponsor",
+      "locked": false,
+      "unlock_condition_item": null
+    },
+    {
+      "id": "apothecary",
+      "name": "The Apothecary",
+      "description": "Smells like scope and old coffee. Old Procurement Pete runs this place. Bring him your inputs and a technique and he'll help you produce something useful. Or he'll tell you why you can't yet. Either way, you'll learn something.",
+      "is_crafting_station": true,
+      "is_starting_node": false,
+      "enemy_id": null,
+      "npc_id": "apothecary_npc",
+      "locked": false,
+      "unlock_condition_item": null
+    },
+    {
+      "id": "stakeholder_thicket",
+      "name": "The Stakeholder Thicket",
+      "description": "A dense tangle of unidentified interests and undocumented influence. People move through here who have opinions about your project. Some of them don't even know they have opinions yet. You won't get through without a Stakeholder Register.",
+      "is_crafting_station": false,
+      "is_starting_node": false,
+      "enemy_id": "undocumented_stakeholder",
+      "npc_id": null,
+      "locked": false,
+      "unlock_condition_item": null
+    },
+    {
+      "id": "field_interviews",
+      "name": "The Field",
+      "description": "There's no shortcut to this part. You have to go out, find people, and ask them questions. The Stakeholder Interviews don't appear in the apothecary — they have to be gathered here, in the world, from actual conversations.",
+      "is_crafting_station": false,
+      "is_starting_node": false,
+      "enemy_id": null,
+      "npc_id": "field_contact",
+      "locked": false,
+      "unlock_condition_item": null,
+      "grants_item_on_visit": "stakeholder_interviews"
+    },
+    {
+      "id": "charter_hall",
+      "name": "The Charter Hall",
+      "description": "A formal chamber where documents become official. The Sponsor's seal lives here. Bring a completed Project Charter and the Sponsor will sign it. The project does not truly exist until this happens.",
+      "is_crafting_station": false,
+      "is_starting_node": false,
+      "enemy_id": "scope_phantom",
+      "npc_id": "the_sponsor",
+      "locked": true,
+      "unlock_condition_item": "project_charter"
+    },
+    {
+      "id": "oracle_grove",
+      "name": "The Oracle's Grove",
+      "description": "Quiet. Uncomfortably quiet. The Oracle of Process sits here and will answer your questions — sort of. She speaks in hints, not answers. Visit when you're stuck. She will not do the work for you.",
+      "is_crafting_station": false,
+      "is_starting_node": false,
+      "enemy_id": null,
+      "npc_id": "oracle",
+      "locked": false,
+      "unlock_condition_item": null
+    }
+  ],
+
+  "enemies": [
+    {
+      "id": "undocumented_stakeholder",
+      "name": "The Undocumented Stakeholder",
+      "hp": 30,
+      "damage_per_turn": 8,
+      "weakness_item": "stakeholder_register",
+      "partial_items": ["project_charter", "assumption_log"],
+      "immune_items": ["business_case", "scope_creep"],
+      "intro_dialog": "You didn't even know I existed, did you. I've had opinions about this project since before you were assigned to it. I influence decisions. I attend the meetings nobody invites you to. I am the reason your scope changes three weeks in. Put me in the register or face the consequences.",
+      "partial_dialog": {
+        "project_charter": "The charter names the project. It does not name me. Try harder.",
+        "assumption_log": "Oh, I'm an assumption now? I am a person. A very influential person."
+      },
+      "immune_dialog": {
+        "business_case": "The business case justifies the project. It does not find me. Go look.",
+        "scope_creep": "Do not bring your garbage into this encounter."
+      },
+      "defeat_dialog": "Fine. Third row. Power: High. Interest: Very High. Notes: Was not consulted early enough. Again. This always happens.",
+      "drops_item": null
+    },
+    {
+      "id": "scope_phantom",
+      "name": "The Scope Phantom",
+      "hp": 20,
+      "damage_per_turn": 5,
+      "weakness_item": "signed_project_charter",
+      "partial_items": ["project_charter", "assumption_log"],
+      "immune_items": ["stakeholder_interviews", "scope_creep"],
+      "intro_dialog": "Before there is a signed charter, anything is possible. I am every feature nobody asked for, every deliverable nobody defined, every 'while you're at it' that ever derailed a project. You cannot stop me with a draft. Only an authorized, signed charter closes this door.",
+      "partial_dialog": {
+        "project_charter": "A draft. Adorable. Come back when someone with authority has signed it.",
+        "assumption_log": "You documented that I might appear. That is not the same as stopping me."
+      },
+      "immune_dialog": {
+        "stakeholder_interviews": "Talking to people does not define scope. Sign the charter.",
+        "scope_creep": "I created you. You cannot defeat me."
+      },
+      "defeat_dialog": "The charter is signed. Scope is defined. I retreat — for now. I will return in Planning if you leave anything ambiguous.",
+      "drops_item": "signed_project_charter"
+    }
+  ],
+
+  "npcs": [
+    {
+      "id": "the_sponsor",
+      "name": "The Sponsor",
+      "type": "standard",
+      "default_dialog": "I believe in this project. I also believe in you. Now go develop the charter — I can't sign what doesn't exist. The Business Case is already in your pack. Start there.",
+      "conditional_dialog": [
+        {
+          "condition_item": "project_charter",
+          "dialog": "You have a charter. Bring it to the Charter Hall and we'll make it official. The Scope Phantom guards the hall — you'll need to deal with that first."
+        },
+        {
+          "condition_item": "signed_project_charter",
+          "dialog": "It's signed. You have authority. Now get out of my office and go plan something."
+        }
+      ]
+    },
+    {
+      "id": "apothecary_npc",
+      "name": "Old Procurement Pete",
+      "type": "standard",
+      "default_dialog": "Bring me inputs and a technique and I'll show you what comes out. Don't bring me junk and expect gold. The process is the process.",
+      "conditional_dialog": [
+        {
+          "condition_item": "scope_creep",
+          "dialog": "I see you've been experimenting. That thing in your pack — that's Scope Creep. Happens when you combine things that don't go together. Not the end of the world. Learn from it."
+        },
+        {
+          "condition_item": "stakeholder_register",
+          "dialog": "The Stakeholder Register. You made that. That's the Identify Stakeholders process, right there in your hands. Good work."
+        }
+      ]
+    },
+    {
+      "id": "field_contact",
+      "name": "A Very Talkative Stakeholder",
+      "type": "standard",
+      "default_dialog": "Oh, I have thoughts. Many thoughts. About the timeline, the deliverables, the people involved, the people who should be involved but aren't — do you have a minute? Good. Let me tell you everything.",
+      "conditional_dialog": [
+        {
+          "condition_item": "stakeholder_interviews",
+          "dialog": "You already talked to me. Go talk to the others. Then take everything you've gathered to the apothecary."
+        }
+      ],
+      "grants_item_on_talk": "stakeholder_interviews"
+    },
+    {
+      "id": "oracle",
+      "name": "The Oracle of Process",
+      "type": "oracle",
+      "flavor": "She speaks only in questions, which is somehow still more helpful than your last PMO.",
+      "hints": [
+        {
+          "trigger_missing_item": "project_charter",
+          "tier_1": "Every journey requires authorization. What document makes the journey official?",
+          "tier_2": "The project cannot begin without formal authority. Something must be developed — something that connects the business case to the project manager's power.",
+          "tier_3": "You need a Project Charter. Your Business Case is the key input. Take it to the Apothecary and apply Expert Judgment."
+        },
+        {
+          "trigger_missing_item": "stakeholder_register",
+          "tier_1": "The unseen shape outcomes as much as the seen. Have you accounted for everyone with a stake?",
+          "tier_2": "You cannot document what you have not found. The field holds raw material. Go gather it, then bring it back.",
+          "tier_3": "You need a Stakeholder Register. First visit The Field to collect Stakeholder Interviews. Then bring the Charter and the Interviews to the Apothecary with Data Gathering."
+        },
+        {
+          "trigger_missing_item": "signed_project_charter",
+          "tier_1": "A draft is a beginning. What makes a beginning official?",
+          "tier_2": "Authority is not assumed. It is granted. Someone with power must confirm it.",
+          "tier_3": "The Sponsor must sign the charter. The Charter Hall is locked until you hold a Project Charter. The Scope Phantom guards the hall — bring the right artifact."
+        }
+      ]
+    }
+  ],
+
+  "eefs": [],
+
+  "win_condition": {
+    "type": "hold_item",
+    "item_id": "signed_project_charter",
+    "victory_text": "The Initiating Wilds are cleared. Your charter is signed. Your stakeholders are identified. You have formal authority and a register full of people who can no longer claim they weren't consulted. The forest of undefined objectives is behind you. Ahead: the Planning Territories, where 24 processes wait and scope must be defined before something far worse than the Scope Phantom arrives. Proceed when ready.",
+    "next_chapter": "chapter_02.json"
+  }
+}

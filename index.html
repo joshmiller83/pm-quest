@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PM Quest: The ITTO RPG</title>
+  <style>
+    :root {
+      --navy:     #1a2744;
+      --navy-mid: #243260;
+      --slate:    #4a5568;
+      --slate-lt: #718096;
+      --gold:     #c9a84c;
+      --gold-lt:  #e0c070;
+      --parchment:#f5f0e8;
+      --white:    #ffffff;
+      --dark:     #2d2d2d;
+      --muted:    #9aa5b4;
+      --danger:   #c0392b;
+      --success:  #27ae60;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Header ──────────────────────────────────────────── */
+    .site-header {
+      background: linear-gradient(180deg, #0d1629 0%, var(--navy) 100%);
+      border-bottom: 2px solid var(--gold);
+      padding: 2.5rem 2rem 2rem;
+      text-align: center;
+    }
+
+    .logo-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .logo-title {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .logo-title span {
+      color: var(--gold);
+    }
+
+    .logo-subtitle {
+      margin-top: 0.6rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Main content ────────────────────────────────────── */
+    .main {
+      flex: 1;
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 3rem;
+    }
+
+    /* ── Section headers ─────────────────────────────────── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .section-rule {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--gold), transparent);
+      opacity: 0.4;
+    }
+
+    /* ── Chapter grid ────────────────────────────────────── */
+    .chapter-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+
+    .chapter-card {
+      background: var(--navy-mid);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: border-color 0.15s, transform 0.15s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .chapter-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 10px 10px 0 0;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+
+    .chapter-card.available:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .chapter-card.available:hover::before {
+      opacity: 1;
+    }
+
+    .chapter-card.locked {
+      opacity: 0.45;
+      cursor: default;
+    }
+
+    .chapter-number {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .chapter-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.3;
+    }
+
+    .chapter-process-group {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(201, 168, 76, 0.15);
+      color: var(--gold-lt);
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      border-radius: 4px;
+      padding: 0.2rem 0.5rem;
+      align-self: flex-start;
+    }
+
+    .chapter-card-footer {
+      margin-top: auto;
+      padding-top: 0.75rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 0.55rem 1.1rem;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, opacity 0.15s;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-lt);
+    }
+
+    .btn-locked {
+      background: rgba(255,255,255,0.06);
+      color: var(--muted);
+      cursor: default;
+    }
+
+    .btn-continue {
+      background: transparent;
+      color: var(--gold);
+      border: 1.5px solid var(--gold);
+    }
+
+    .btn-continue:hover {
+      background: rgba(201,168,76,0.1);
+    }
+
+    .btn-danger-sm {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.75rem;
+      padding: 0.3rem 0.7rem;
+    }
+
+    .btn-danger-sm:hover {
+      color: var(--danger);
+      border-color: var(--danger);
+    }
+
+    /* ── Saved games ─────────────────────────────────────── */
+    .saves-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 3rem;
+    }
+
+    .save-card {
+      background: var(--navy-mid);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-left: 3px solid var(--gold);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .save-info {
+      flex: 1;
+    }
+
+    .save-chapter {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .save-meta {
+      margin-top: 0.25rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .save-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* ── Empty state ─────────────────────────────────────── */
+    .empty-saves {
+      padding: 1.25rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px dashed rgba(255,255,255,0.1);
+      border-radius: 8px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-bottom: 3rem;
+    }
+
+    /* ── Modal ───────────────────────────────────────────── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 15, 30, 0.85);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--navy-mid);
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 480px;
+      width: 90%;
+      text-align: center;
+    }
+
+    .modal-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+
+    .modal-body {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-body strong {
+      color: var(--gold-lt);
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: center;
+    }
+
+    /* ── Footer ──────────────────────────────────────────── */
+    .site-footer {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .site-footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .site-footer a:hover {
+      color: var(--gold-lt);
+    }
+
+    /* ── Loader ──────────────────────────────────────────── */
+    .loading-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      padding: 3rem;
+      color: var(--muted);
+    }
+
+    .spinner {
+      width: 28px;
+      height: 28px;
+      border: 3px solid rgba(201,168,76,0.2);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Error state ─────────────────────────────────────── */
+    .error-state {
+      background: rgba(192, 57, 43, 0.1);
+      border: 1px solid rgba(192, 57, 43, 0.3);
+      border-radius: 8px;
+      padding: 1.25rem;
+      color: #e88;
+      font-size: 0.85rem;
+    }
+
+    /* ── Responsive ──────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .site-footer {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+      }
+
+      .save-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .save-actions {
+        width: 100%;
+        justify-content: flex-end;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <p class="logo-eyebrow">A PMI Knowledge Adventure</p>
+    <h1 class="logo-title">PM <span>Quest</span></h1>
+    <p class="logo-subtitle">The ITTO RPG &nbsp;·&nbsp; Craft artifacts. Defeat enemies. Manage the project.</p>
+  </header>
+
+  <!-- Main -->
+  <main class="main">
+
+    <!-- Chapters -->
+    <section aria-labelledby="chapters-label">
+      <div class="section-header">
+        <span class="section-label" id="chapters-label">Chapters</span>
+        <div class="section-rule"></div>
+      </div>
+      <div id="chapter-grid" class="chapter-grid">
+        <div class="loading-state">
+          <div class="spinner"></div>
+          <span>Loading chapters…</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Saved Games -->
+    <section aria-labelledby="saves-label" id="saves-section">
+      <div class="section-header">
+        <span class="section-label" id="saves-label">Saved Games</span>
+        <div class="section-rule"></div>
+      </div>
+      <div id="saves-list" class="saves-list"></div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <span>PM Quest · v0.1.0</span>
+    <span>
+      <a href="spec/itto_rpg_spec.md" target="_blank">Design Spec</a>
+      &nbsp;·&nbsp;
+      <a href="docs/frontend_discovery.md" target="_blank">Frontend Discovery</a>
+    </span>
+  </footer>
+
+  <!-- Coming-Soon Modal -->
+  <div class="modal-overlay" id="coming-soon-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal">
+      <div class="modal-icon">🚧</div>
+      <h2 class="modal-title" id="modal-title">Engine Not Yet Built</h2>
+      <p class="modal-body">
+        The chapter select screen is ready, but <strong>pm_quest.html</strong> (the game engine)
+        hasn't been built yet. The Initiating Wilds await your PM skills — check back once
+        the engine is implemented.
+      </p>
+      <div class="modal-actions">
+        <button class="btn btn-primary" onclick="closeModal()">Got It</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ── Constants ───────────────────────────────────────────
+    const SAVE_PREFIX    = 'pm_quest_save_';
+    const ENGINE_URL     = 'pm_quest.html';
+    const CHAPTER_INDEX  = 'chapters/index.json';
+
+    const PROCESS_GROUP_ICONS = {
+      'Initiating':              '🌱',
+      'Planning (Scope)':        '📐',
+      'Planning (Schedule & Cost)': '📅',
+      'Planning (Risk)':         '⚠️',
+      'Executing':               '⚙️',
+      'Monitoring & Controlling':'📊',
+      'Closing':                 '🏁',
+    };
+
+    // ── Helpers ─────────────────────────────────────────────
+    function formatDate(isoString) {
+      try {
+        return new Date(isoString).toLocaleDateString(undefined, {
+          month: 'short', day: 'numeric', year: 'numeric',
+          hour: '2-digit', minute: '2-digit'
+        });
+      } catch { return isoString; }
+    }
+
+    function engineExists() {
+      // We optimistically check: if the file is served we'll find out on nav.
+      // For now, we always show the coming-soon modal.
+      return false;
+    }
+
+    // ── Modal ────────────────────────────────────────────────
+    function openModal() {
+      document.getElementById('coming-soon-modal').classList.add('open');
+    }
+
+    function closeModal() {
+      document.getElementById('coming-soon-modal').classList.remove('open');
+    }
+
+    document.getElementById('coming-soon-modal').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // ── Start chapter ────────────────────────────────────────
+    function startNewGame(chapterFile) {
+      if (!engineExists()) { openModal(); return; }
+      sessionStorage.setItem('pm_quest_chapter', chapterFile);
+      sessionStorage.removeItem('pm_quest_resume');
+      window.location.href = ENGINE_URL;
+    }
+
+    function continueGame(saveKey) {
+      if (!engineExists()) { openModal(); return; }
+      const saveData = localStorage.getItem(saveKey);
+      if (!saveData) return;
+      sessionStorage.setItem('pm_quest_resume', saveKey);
+      window.location.href = ENGINE_URL;
+    }
+
+    // ── Delete save ──────────────────────────────────────────
+    function deleteSave(saveKey) {
+      if (!confirm('Delete this saved game? This cannot be undone.')) return;
+      localStorage.removeItem(saveKey);
+      renderSaves();
+    }
+
+    // ── Render chapters ──────────────────────────────────────
+    function renderChapters(chapters) {
+      const grid = document.getElementById('chapter-grid');
+      grid.innerHTML = '';
+
+      chapters.forEach((ch, i) => {
+        const isAvailable = ch.status === 'available';
+        const icon = PROCESS_GROUP_ICONS[ch.process_group] || '📋';
+        const chNum = String(i + 1).padStart(2, '0');
+
+        const card = document.createElement('div');
+        card.className = `chapter-card ${isAvailable ? 'available' : 'locked'}`;
+        card.innerHTML = `
+          <div class="chapter-number">Chapter ${chNum}</div>
+          <div class="chapter-title">${icon} ${ch.title}</div>
+          <div class="chapter-process-group">${ch.process_group}</div>
+          <div class="chapter-card-footer">
+            ${isAvailable
+              ? `<button class="btn btn-primary" onclick="startNewGame('${ch.file}')">▶ New Game</button>`
+              : `<button class="btn btn-locked" disabled>🔒 Coming Soon</button>`
+            }
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // ── Render saves ─────────────────────────────────────────
+    function renderSaves() {
+      const saveKeys = Object.keys(localStorage)
+        .filter(k => k.startsWith(SAVE_PREFIX))
+        .sort((a, b) => {
+          // Sort by timestamp descending
+          try {
+            const ta = JSON.parse(localStorage.getItem(a))?.timestamp || '';
+            const tb = JSON.parse(localStorage.getItem(b))?.timestamp || '';
+            return tb.localeCompare(ta);
+          } catch { return 0; }
+        });
+
+      const section = document.getElementById('saves-section');
+      const list    = document.getElementById('saves-list');
+      list.innerHTML = '';
+
+      if (saveKeys.length === 0) {
+        section.style.display = 'none';
+        return;
+      }
+
+      section.style.display = '';
+
+      saveKeys.forEach(key => {
+        let save;
+        try { save = JSON.parse(localStorage.getItem(key)); }
+        catch { return; }
+
+        const chapterTitle = save.chapterTitle || save.chapter || 'Unknown Chapter';
+        const nodeName     = save.nodeName     || save.node    || 'Unknown Location';
+        const itemCount    = Array.isArray(save.inventory) ? save.inventory.length : '?';
+        const timestamp    = save.timestamp ? formatDate(save.timestamp) : 'Unknown date';
+        const hp           = (save.hp != null && save.maxHp != null) ? `HP ${save.hp}/${save.maxHp}` : '';
+
+        const card = document.createElement('div');
+        card.className = 'save-card';
+        card.innerHTML = `
+          <div class="save-info">
+            <div class="save-chapter">${chapterTitle}</div>
+            <div class="save-meta">
+              <span>📍 ${nodeName}</span>
+              <span>💼 ${itemCount} item${itemCount !== 1 ? 's' : ''}</span>
+              ${hp ? `<span>❤️ ${hp}</span>` : ''}
+              <span>🕐 ${timestamp}</span>
+            </div>
+          </div>
+          <div class="save-actions">
+            <button class="btn btn-danger-sm" onclick="deleteSave('${key}')">Delete</button>
+            <button class="btn btn-continue" onclick="continueGame('${key}')">▶ Continue</button>
+          </div>
+        `;
+        list.appendChild(card);
+      });
+    }
+
+    // ── Init ─────────────────────────────────────────────────
+    async function init() {
+      // Load saves (synchronous localStorage)
+      renderSaves();
+
+      // Load chapter manifest
+      const grid = document.getElementById('chapter-grid');
+      try {
+        const resp = await fetch(CHAPTER_INDEX);
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const data = await resp.json();
+        renderChapters(data.chapters);
+      } catch (err) {
+        grid.innerHTML = `
+          <div class="error-state">
+            ⚠️ Could not load chapter list (<code>${CHAPTER_INDEX}</code>).<br>
+            Make sure you're running a local HTTP server:<br>
+            <code>python3 -m http.server 8000</code>
+          </div>`;
+        console.error('Chapter index load error:', err);
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+{
+  "chapters": [
+    {
+      "id": "chapter_01",
+      "file": "chapters/chapter_01.json",
+      "title": "The Initiating Wilds",
+      "process_group": "Initiating",
+      "status": "available"
+    },
+    {
+      "id": "chapter_02",
+      "file": "chapters/chapter_02.json",
+      "title": "The Planning Territories",
+      "process_group": "Planning (Scope)",
+      "status": "coming_soon"
+    },
+    {
+      "id": "chapter_03",
+      "file": "chapters/chapter_03.json",
+      "title": "The Schedule Swamp",
+      "process_group": "Planning (Schedule & Cost)",
+      "status": "coming_soon"
+    },
+    {
+      "id": "chapter_04",
+      "file": "chapters/chapter_04.json",
+      "title": "The Risk Marshes",
+      "process_group": "Planning (Risk)",
+      "status": "coming_soon"
+    },
+    {
+      "id": "chapter_05",
+      "file": "chapters/chapter_05.json",
+      "title": "The Executing Badlands",
+      "process_group": "Executing",
+      "status": "coming_soon"
+    },
+    {
+      "id": "chapter_06",
+      "file": "chapters/chapter_06.json",
+      "title": "The Monitoring Maze",
+      "process_group": "Monitoring & Controlling",
+      "status": "coming_soon"
+    },
+    {
+      "id": "chapter_07",
+      "file": "chapters/chapter_07.json",
+      "title": "The Closing Cliffs",
+      "process_group": "Closing",
+      "status": "coming_soon"
+    }
+  ]
+}
