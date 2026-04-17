@@ -38,7 +38,6 @@ async function init() {
     if (raw) {
       try {
         const save = JSON.parse(raw);
-        // We need the chapter JSON to restore properly
         const chapter = await fetchChapter(save.chapterFile);
         state.chapter = chapter;
         loadSave(save);
@@ -60,7 +59,21 @@ async function init() {
     return;
   }
 
-  // No session data — redirect home
+  // No session data (e.g. page refresh) — try the most recent localStorage save
+  const latestSave = getMostRecentSave();
+  if (latestSave) {
+    try {
+      const chapter = await fetchChapter(latestSave.chapterFile);
+      state.chapter = chapter;
+      loadSave(latestSave);
+      renderAll();
+      return;
+    } catch (err) {
+      console.error('Failed to restore save on refresh:', err);
+    }
+  }
+
+  // Nothing to load — go home
   window.location.href = 'index.html';
 }
 
@@ -206,6 +219,16 @@ function showLoadError(err) {
         <a href="index.html" style="color:var(--gold)">← Back to menu</a>
       </div>
     </div>`;
+}
+
+function getMostRecentSave() {
+  const saves = Object.keys(localStorage)
+    .filter(k => k.startsWith('pm_quest_save_'))
+    .map(k => { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } })
+    .filter(s => s?.chapterFile);
+  if (saves.length === 0) return null;
+  saves.sort((a, b) => (b.timestamp ?? '').localeCompare(a.timestamp ?? ''));
+  return saves[0];
 }
 
 function showNoNextChapter() {
