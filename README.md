@@ -1,17 +1,21 @@
 # PM Quest: The ITTO RPG
 
+**[▶ Play now on GitHub Pages](https://joshmiller83.github.io/pm-quest/)**
+
 A turn-based, text-driven RPG where you play a newly assigned Project Manager navigating a world that runs entirely on PMI process logic. Progress is gated by knowledge: to defeat enemies, unlock areas, and advance the project, you must craft the right artifacts using correct inputs and techniques. The game is a teaching tool wearing a dungeon-crawler costume.
 
 ## How to Play
 
-No installation required. You'll need a local HTTP server to avoid browser CORS restrictions on `fetch()`:
+Play online at **https://joshmiller83.github.io/pm-quest/** — no installation required.
+
+To run locally (needed for `fetch()` to load chapter files):
 
 ```bash
 # from the repo root
 python3 -m http.server 8000
 ```
 
-Then open **http://localhost:8000/** in your browser. Alternatively, deploy the repo to any static host (GitHub Pages, Netlify, etc.).
+Then open **http://localhost:8000/** in your browser.
 
 ## Architecture
 
