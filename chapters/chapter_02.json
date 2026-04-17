@@ -1,0 +1,501 @@
+{
+  "chapter": 2,
+  "title": "The Planning Territories: Scope",
+  "process_group": "Planning",
+  "intro_text": "You made it out of the Initiating Wilds with a signed charter and a stakeholder register. Congratulations. Now the real work starts. The Planning Territories stretch out before you — vast, structured, and deeply bureaucratic. You are entering the Scope region first, because nothing else in planning makes sense until you know what you're building. The Project Management Plan must be established. The scope must be defined. The WBS must be built. And somewhere out there, Scope Creep is already scheming. You cannot outrun it. You can only outplan it.",
+
+  "starting_items": ["signed_project_charter", "stakeholder_register"],
+  "carryover_items": ["signed_project_charter", "stakeholder_register", "assumption_log"],
+
+  "items": [
+    {
+      "id": "signed_project_charter",
+      "name": "Project Charter (Signed)",
+      "description": "The authorized foundation of everything. Still the most important document in your pack. Input to almost everything that comes next.",
+      "type": "artifact",
+      "combat_power": 3
+    },
+    {
+      "id": "stakeholder_register",
+      "name": "Stakeholder Register",
+      "description": "Everyone with a stake, documented. Critical input to requirements collection — you can't gather requirements from people you haven't identified.",
+      "type": "artifact",
+      "combat_power": 2
+    },
+    {
+      "id": "assumption_log",
+      "name": "Assumption Log",
+      "description": "A record of things the team is treating as true without proof. Carries forward from Initiating. Still not facts.",
+      "type": "artifact",
+      "combat_power": 1
+    },
+    {
+      "id": "project_management_plan",
+      "name": "Project Management Plan",
+      "description": "The master document that describes how the project will be executed, monitored, controlled, and closed. Every subsidiary management plan lives inside it. It is not a schedule. It is the plan for how you will plan.",
+      "type": "artifact",
+      "combat_power": 3
+    },
+    {
+      "id": "scope_management_plan",
+      "name": "Scope Management Plan",
+      "description": "A component of the Project Management Plan. Defines how scope will be defined, developed, monitored, controlled, and validated. Also produces the Requirements Management Plan as a companion output. Without this, you have no agreed-upon method for doing any of the scope work.",
+      "type": "artifact",
+      "combat_power": 2
+    },
+    {
+      "id": "requirements_template",
+      "name": "Requirements Template (PMO Standard)",
+      "description": "Gerald from the PMO insists all requirements be collected using the organizational standard template. It is mildly annoying and absolutely required. This is what an Organizational Process Asset looks like in practice.",
+      "type": "resource",
+      "combat_power": 0
+    },
+    {
+      "id": "raw_stakeholder_needs",
+      "name": "Raw Stakeholder Needs",
+      "description": "Unstructured, unverified wants gathered from stakeholders at the bazaar. Some of it is useful. Some of it is a wish list. All of it needs to be analyzed and documented before it becomes requirements.",
+      "type": "resource",
+      "combat_power": 1
+    },
+    {
+      "id": "requirements_documentation",
+      "name": "Requirements Documentation",
+      "description": "The formally analyzed and documented set of stakeholder needs — what the project must deliver to satisfy the stakeholders and the business case. This is the output of Collect Requirements (or Elicit and Analyze Requirements in PMBOK 8). It feeds directly into Define Scope.",
+      "type": "artifact",
+      "combat_power": 4
+    },
+    {
+      "id": "project_scope_statement",
+      "name": "Project Scope Statement",
+      "description": "A detailed description of the project scope, major deliverables, assumptions, and exclusions. Explicitly states what is IN scope and — critically — what is OUT of scope. This is the output of Define Scope. The WBS is built from this document.",
+      "type": "artifact",
+      "combat_power": 3
+    },
+    {
+      "id": "wbs",
+      "name": "Work Breakdown Structure (+ WBS Dictionary)",
+      "description": "A hierarchical decomposition of the total scope of work into work packages. Every deliverable from the scope statement is broken down until it can be assigned, estimated, and tracked. The WBS Dictionary travels with it, defining each component. Together they form two of the three components of the Scope Baseline.",
+      "type": "artifact",
+      "combat_power": 4
+    },
+    {
+      "id": "scope_baseline",
+      "name": "Scope Baseline",
+      "description": "The approved combination of the Project Scope Statement, WBS, and WBS Dictionary. The formal, change-controlled benchmark against which all scope performance is measured. This is what you use to defend against Scope Creep. Without it, you have no line to hold.",
+      "type": "artifact",
+      "combat_power": 5
+    },
+    {
+      "id": "approved_scope_baseline",
+      "name": "Scope Baseline (Defended)",
+      "description": "The Scope Baseline, formally approved and tested under fire. Scope Creep tried to expand it and failed. This is what a managed, authorized scope looks like. Carry it into Chapter 3.",
+      "type": "artifact",
+      "combat_power": 6
+    },
+    {
+      "id": "wish_list",
+      "name": "The Wish List",
+      "description": "What you get when you try to define scope before collecting requirements. It has the shape of a scope statement but the substance of a daydream. Useless in combat. Embarrassing at status meetings.",
+      "type": "junk",
+      "combat_power": 0
+    },
+    {
+      "id": "gold_plated_deliverable",
+      "name": "Gold-Plated Deliverable",
+      "description": "Beautiful. Technically impressive. Completely outside scope. Nobody asked for this, and yet here it is. This is what happens when scope is not defined before work begins.",
+      "type": "junk",
+      "combat_power": 0
+    }
+  ],
+
+  "techniques": [
+    {
+      "id": "expert_judgment",
+      "name": "Expert Judgment",
+      "description": "Consulting people who have done this before. Still applicable. Still foundational. Will continue to appear in every chapter forever."
+    },
+    {
+      "id": "data_gathering",
+      "name": "Data Gathering",
+      "description": "Interviews, surveys, focus groups, questionnaires, benchmarking. Any structured method for pulling requirements out of stakeholders and records. This is the primary technique for Collect Requirements."
+    },
+    {
+      "id": "meetings",
+      "name": "Meetings",
+      "description": "Structured interactions to align, decide, and document. Required for developing the Project Management Plan. Also required for most of life."
+    },
+    {
+      "id": "data_analysis",
+      "name": "Data Analysis",
+      "description": "Alternatives analysis, document analysis, product analysis. Examining what exists to determine what should exist. Key technique for Define Scope."
+    },
+    {
+      "id": "decision_making",
+      "name": "Decision Making",
+      "description": "Multicriteria decision analysis, voting, prioritization. Used to narrow down requirements and define what the project will actually commit to. Used in both Collect Requirements and Define Scope."
+    },
+    {
+      "id": "decomposition",
+      "name": "Decomposition",
+      "description": "Breaking deliverables into smaller and smaller components until each piece can be assigned, estimated, and measured. This is the defining technique of Create WBS. You keep breaking it down until you hit work packages."
+    }
+  ],
+
+  "recipes": [
+    {
+      "id": "recipe_201",
+      "name": "Develop Project Management Plan",
+      "pmbok_process": "Develop Project Management Plan",
+      "inputs": ["signed_project_charter"],
+      "technique": "meetings",
+      "output": "project_management_plan",
+      "consume_inputs": false,
+      "success_dialog": "The signed charter provides the authorization and high-level objectives. Meetings with key stakeholders and the team produce the Project Management Plan — the overarching document that defines how every aspect of the project will be managed. Every subsidiary plan will eventually live inside it. This is the Develop Project Management Plan process.",
+      "failure_hints": {
+        "wrong_technique": "The Project Management Plan is built through structured collaboration. It takes Meetings — with stakeholders, the team, and relevant experts.",
+        "wrong_inputs": "You need the signed Project Charter as the authorizing foundation before you can plan how to manage anything."
+      }
+    },
+    {
+      "id": "recipe_202",
+      "name": "Plan Scope Management",
+      "pmbok_process": "Plan Scope Management",
+      "inputs": ["project_management_plan", "signed_project_charter"],
+      "technique": "expert_judgment",
+      "output": "scope_management_plan",
+      "consume_inputs": false,
+      "success_dialog": "With the Project Management Plan as the framework and the Charter as context, Expert Judgment produces the Scope Management Plan — and its companion, the Requirements Management Plan. These two documents define HOW requirements will be collected, HOW scope will be stated, HOW the WBS will be built, and HOW scope will be validated and controlled. This is the Plan Scope Management process.",
+      "failure_hints": {
+        "wrong_technique": "Scope Management planning requires Experience to do well. Apply Expert Judgment.",
+        "wrong_inputs": "Plan Scope Management needs both the Project Management Plan (the framework) and the signed Project Charter (the objectives). You're missing one."
+      }
+    },
+    {
+      "id": "recipe_203",
+      "name": "Collect Requirements",
+      "pmbok_process": "Elicit and Analyze Requirements",
+      "inputs": ["stakeholder_register", "raw_stakeholder_needs"],
+      "technique": "data_gathering",
+      "output": "requirements_documentation",
+      "consume_inputs": false,
+      "opa_constraint": {
+        "required_item": "requirements_template",
+        "failure_dialog": "Gerald from the PMO has flagged this attempt. The organization requires all requirements to be collected using the standard template. It's an Organizational Process Asset — a policy your organization has developed to improve consistency. Visit the PMO Office, pick up the Requirements Template, and try again."
+      },
+      "success_dialog": "The Stakeholder Register told you who to ask. The Raw Stakeholder Needs were the unstructured answers. The Requirements Template from the PMO provided the structure. Data Gathering turns all of that into formal Requirements Documentation — analyzed, documented, and ready to be used in Define Scope. This is the Collect Requirements process (called Elicit and Analyze Requirements in PMBOK 8th Edition).",
+      "failure_hints": {
+        "wrong_technique": "Requirements are gathered from people through structured methods — interviews, surveys, workshops. Apply Data Gathering.",
+        "wrong_inputs": "You need the Stakeholder Register (who to ask) and the Raw Stakeholder Needs (what they said). One of those is missing. The Stakeholder Register came from Chapter 1. The Raw Stakeholder Needs must be gathered in the field."
+      }
+    },
+    {
+      "id": "recipe_204",
+      "name": "Define Scope",
+      "pmbok_process": "Define Scope",
+      "inputs": ["requirements_documentation", "signed_project_charter"],
+      "technique": "data_analysis",
+      "output": "project_scope_statement",
+      "consume_inputs": false,
+      "success_dialog": "Requirements Documentation provides the what. The signed Charter provides the why and the boundaries. Data Analysis — specifically product analysis and alternatives analysis — distills them into the Project Scope Statement: a formal description of the project scope, major deliverables, assumptions, and exclusions. What is in scope is stated. What is out of scope is stated. This is Define Scope.",
+      "failure_hints": {
+        "wrong_technique": "Scope definition requires analyzing requirements and the charter to determine what the project will and won't do. Apply Data Analysis.",
+        "wrong_inputs": "Define Scope needs Requirements Documentation (what stakeholders need) and the signed Project Charter (project objectives and boundaries). You need both."
+      }
+    },
+    {
+      "id": "recipe_205",
+      "name": "Define Scope (Decision Making)",
+      "pmbok_process": "Define Scope",
+      "inputs": ["requirements_documentation", "signed_project_charter"],
+      "technique": "decision_making",
+      "output": "project_scope_statement",
+      "consume_inputs": false,
+      "success_dialog": "When there are competing requirements or priorities to sort through, Decision Making is the right technique for Define Scope. Multicriteria analysis, prioritization, team voting — whatever it takes to reach agreement on what the project will commit to. The result is the same: a Project Scope Statement. PMBOK supports both Data Analysis and Decision Making here.",
+      "failure_hints": {
+        "wrong_technique": "Decision Making can work here — but only with the right inputs. Check that you have Requirements Documentation and the Project Charter.",
+        "wrong_inputs": "Decision Making needs something to decide about. Bring the Requirements Documentation and the signed Project Charter."
+      }
+    },
+    {
+      "id": "recipe_206",
+      "name": "Develop Scope Structure (Create WBS)",
+      "pmbok_process": "Develop Scope Structure",
+      "inputs": ["project_scope_statement", "scope_management_plan"],
+      "technique": "decomposition",
+      "output": "wbs",
+      "consume_inputs": false,
+      "success_dialog": "The Project Scope Statement defines what gets built. The Scope Management Plan defines how the WBS will be created. Decomposition breaks the scope statement into deliverables, then breaks those deliverables into smaller components, until you reach work packages — assignable, estimable, measurable units of work. The WBS Dictionary is produced alongside, defining each component. Together these form two of the three components of the Scope Baseline. This is the Create WBS process (Develop Scope Structure in PMBOK 8th Edition).",
+      "failure_hints": {
+        "wrong_technique": "The WBS is built by breaking things down into smaller and smaller pieces until you can assign and estimate them. That's Decomposition.",
+        "wrong_inputs": "Creating the WBS requires the Project Scope Statement (what to decompose) and the Scope Management Plan (how to do the decomposing). One of those is missing."
+      }
+    },
+    {
+      "id": "recipe_207",
+      "name": "Establish Scope Baseline",
+      "pmbok_process": "Develop Scope Structure",
+      "inputs": ["project_scope_statement", "wbs"],
+      "technique": "expert_judgment",
+      "output": "scope_baseline",
+      "consume_inputs": false,
+      "success_dialog": "The Scope Baseline is the approved combination of the Project Scope Statement, the WBS, and the WBS Dictionary — the three components together, formally baselined. Expert Judgment validates that the decomposition is complete and the statement is accurate. Once approved, this becomes the change-controlled benchmark. Any deviation from it is a variance. Any addition to it requires a formal change request. The Scope Baseline is the line between managed scope and Scope Creep. Defend it.",
+      "failure_hints": {
+        "wrong_technique": "Baselining scope requires judgment about whether the decomposition is complete and the statement is accurate. Apply Expert Judgment.",
+        "wrong_inputs": "The Scope Baseline is built from the Project Scope Statement and the WBS (with its Dictionary). You need both."
+      }
+    },
+    {
+      "id": "recipe_208",
+      "name": "Attempting Scope Without Requirements",
+      "pmbok_process": null,
+      "inputs": ["signed_project_charter"],
+      "technique": "decision_making",
+      "output": "wish_list",
+      "consume_inputs": false,
+      "success_dialog": "You attempted to define scope directly from the charter, skipping requirements collection. The result is the Wish List — it has the shape of a scope statement but it was not built on documented stakeholder requirements. You cannot baseline a wish list. Go collect requirements first. The Collect Requirements process exists for a reason.",
+      "failure_hints": {
+        "wrong_technique": "",
+        "wrong_inputs": ""
+      }
+    }
+  ],
+
+  "nodes": [
+    {
+      "id": "planning_chamber",
+      "name": "The Planning Chamber",
+      "description": "A high-ceilinged room with too many whiteboards and exactly one coffee machine that is always empty. This is where Planning begins. The Initiating Wilds are behind you. Twenty-four processes are ahead of you. You are starting with scope, because scope is where every plan either holds together or falls apart.",
+      "is_crafting_station": false,
+      "is_starting_node": true,
+      "enemy_id": null,
+      "npc_id": "planning_foreman",
+      "locked": false,
+      "unlock_condition_item": null
+    },
+    {
+      "id": "apothecary",
+      "name": "The Apothecary",
+      "description": "Still smells like scope and old coffee. Old Procurement Pete has expanded his operation into Planning. More inputs. More techniques. More recipes. The process is the process.",
+      "is_crafting_station": true,
+      "is_starting_node": false,
+      "enemy_id": null,
+      "npc_id": "apothecary_npc",
+      "locked": false,
+      "unlock_condition_item": null
+    },
+    {
+      "id": "pmo_office",
+      "name": "The PMO Office",
+      "description": "Gerald has been here for 23 years. He has a laminated process chart on his wall from 2009 that he refers to as 'current.' He will give you the Requirements Template and he will explain, at length, why it is mandatory. He is correct. It is mandatory.",
+      "is_crafting_station": false,
+      "is_starting_node": false,
+      "enemy_id": null,
+      "npc_id": "gerald_pmo",
+      "locked": false,
+      "unlock_condition_item": null,
+      "grants_item_on_visit": "requirements_template"
+    },
+    {
+      "id": "requirements_bazaar",
+      "name": "The Requirements Bazaar",
+      "description": "A chaotic marketplace of opinions, preferences, assumptions, and genuine needs. Everyone here has something they want the project to deliver. Much of it is reasonable. Some of it is not. All of it must be heard, filtered, and documented. The Vague Requirement lurks here, making everything harder. Defeat it to get useful input from the sensible stakeholders.",
+      "is_crafting_station": false,
+      "is_starting_node": false,
+      "enemy_id": "vague_requirement",
+      "npc_id": null,
+      "locked": false,
+      "unlock_condition_item": null,
+      "grants_item_on_enemy_defeat": "raw_stakeholder_needs"
+    },
+    {
+      "id": "scope_vault",
+      "name": "The Scope Vault",
+      "description": "A heavily fortified chamber where approved scope baselines are stored and protected. The lock is simple: you may only enter holding a Scope Baseline. Scope Creep has taken up residence inside and must be defeated before the vault can be sealed and your scope protected. It won't stop trying to get back in. That is what change control is for.",
+      "is_crafting_station": false,
+      "is_starting_node": false,
+      "enemy_id": "scope_creep",
+      "npc_id": null,
+      "locked": true,
+      "unlock_condition_item": "scope_baseline"
+    },
+    {
+      "id": "oracle_grove",
+      "name": "The Oracle's Grove",
+      "description": "Still here. Still quiet. The Oracle of Process has followed you into the Planning Territories. Her hints are slightly more specific here because the sequencing errors in Planning are punishing and she knows it.",
+      "is_crafting_station": false,
+      "is_starting_node": false,
+      "enemy_id": null,
+      "npc_id": "oracle",
+      "locked": false,
+      "unlock_condition_item": null
+    }
+  ],
+
+  "enemies": [
+    {
+      "id": "vague_requirement",
+      "name": "The Vague Requirement",
+      "hp": 25,
+      "damage_per_turn": 6,
+      "weakness_item": "requirements_documentation",
+      "partial_items": ["stakeholder_register", "scope_management_plan"],
+      "immune_items": ["project_management_plan", "raw_stakeholder_needs", "wish_list"],
+      "intro_dialog": "I am what happens when nobody writes things down. I am 'make it better.' I am 'you know what I mean.' I am 'fast but also thorough.' I have lived in scope statements and change requests and post-mortems for decades. Raw needs don't stop me. You need the documented, analyzed, formalized version before I yield.",
+      "partial_dialog": {
+        "stakeholder_register": "You know who to ask. You haven't asked them well enough yet. Go document it properly.",
+        "scope_management_plan": "You have a plan for how to collect requirements. You have not collected them. A plan for a plan is still not a plan."
+      },
+      "immune_dialog": {
+        "project_management_plan": "The Project Management Plan tells you how to manage things. It does not make requirements specific. Try harder.",
+        "raw_stakeholder_needs": "Raw needs are just noise. Analyze them. Document them. Come back with something formal.",
+        "wish_list": "You brought a wish list to fight me. A wish list. We are done here."
+      },
+      "defeat_dialog": "Fine. Requirements Documentation. Functional requirements, nonfunctional requirements, stakeholder needs analyzed and categorized. I have been made specific. I cannot survive specificity.",
+      "drops_item": null
+    },
+    {
+      "id": "scope_creep",
+      "name": "Scope Creep",
+      "hp": 45,
+      "damage_per_turn": 10,
+      "weakness_item": "scope_baseline",
+      "partial_items": ["project_scope_statement", "wbs", "requirements_documentation"],
+      "immune_items": ["wish_list", "gold_plated_deliverable", "raw_stakeholder_needs"],
+      "intro_dialog": "Oh, you're back. I've been here since before you started. I've been in every project you've ever worked on. I am the 'while you're at it.' I am the 'one small addition.' I am the feature that seemed reasonable in the meeting and catastrophic at delivery. A scope statement alone doesn't stop me. A WBS alone doesn't stop me. Only the full, approved, change-controlled Scope Baseline gives you something to point at and say: that is what was agreed. Everything else is me.",
+      "partial_dialog": {
+        "project_scope_statement": "Good start. A scope statement tells me what's in and out. But it's not approved and baselined yet. I can still get through.",
+        "wbs": "A WBS structures the work. It does not formalize the boundary. Baseline it.",
+        "requirements_documentation": "Requirements tell you what was needed. The baseline tells you what was agreed. There is a difference."
+      },
+      "immune_dialog": {
+        "wish_list": "You built me a wish list? I have a wish list too. It's much longer than yours.",
+        "gold_plated_deliverable": "You made something nobody asked for and you're trying to fight me with it. I respect the audacity. It won't work.",
+        "raw_stakeholder_needs": "Unanalyzed wants are my native environment. This feeds me."
+      },
+      "defeat_dialog": "Approved. Baselined. Change-controlled. You win this round. I'll be waiting in the schedule, the cost, and every change request you ever receive. The baseline is your weapon. Keep it updated.",
+      "drops_item": "approved_scope_baseline"
+    }
+  ],
+
+  "npcs": [
+    {
+      "id": "planning_foreman",
+      "name": "Magnus the Planning Foreman",
+      "type": "standard",
+      "default_dialog": "Welcome to Planning. You have twenty-four processes ahead of you and we are starting with scope, because if scope is wrong then everything downstream is wrong. Start with the Project Management Plan — you need the framework before you can plan any specific area. Then come back and we'll talk about scope.",
+      "conditional_dialog": [
+        {
+          "condition_item": "project_management_plan",
+          "dialog": "Good. The Project Management Plan is built. Now you can actually plan scope. Head to the PMO before you start — Gerald has something you'll need for requirements collection. Don't skip him. People skip him. They regret it."
+        },
+        {
+          "condition_item": "scope_baseline",
+          "dialog": "The Scope Baseline. That's the whole point of everything you just did. Scope statement. WBS. WBS Dictionary. All three, approved and baselined. Now take it to the Scope Vault and close the door on Scope Creep. For now."
+        },
+        {
+          "condition_item": "approved_scope_baseline",
+          "dialog": "Scope Creep is handled. The baseline is defended. Chapter 2 is done. Ahead of you: schedule and cost planning. More processes. More baselines. Same discipline."
+        }
+      ]
+    },
+    {
+      "id": "apothecary_npc",
+      "name": "Old Procurement Pete",
+      "type": "standard",
+      "default_dialog": "More processes in Planning than in any other group. Twenty-four of them. We're only covering scope in this chapter, but pay attention to the sequence — each process feeds the next. You cannot skip to the WBS without the scope statement. You cannot write the scope statement without requirements. The sequence is the lesson.",
+      "conditional_dialog": [
+        {
+          "condition_item": "wish_list",
+          "dialog": "You have a Wish List in your pack. That is what happens when you define scope before collecting requirements. The scope statement needs requirements documentation as an input. Not a charter. Requirements."
+        },
+        {
+          "condition_item": "scope_baseline",
+          "dialog": "Scope Statement plus WBS plus WBS Dictionary equals Scope Baseline. Three components. All approved. That is the formal definition per PMBOK. You built it correctly."
+        }
+      ]
+    },
+    {
+      "id": "gerald_pmo",
+      "name": "Gerald from the PMO",
+      "type": "opa",
+      "flavor": "Gerald has been with the organization for 23 years. He has opinions about your template usage.",
+      "grants_item": "requirements_template",
+      "imposes_constraint": {
+        "recipe_id": "recipe_203",
+        "required_item": "requirements_template"
+      },
+      "default_dialog": "Every project that has ever run in this organization uses our standard requirements template. It is an Organizational Process Asset — something this organization built so you don't have to start from scratch. Take it. Use it. If your requirements aren't collected in the standard format, the PMO will flag the output and your recipe will fail. I'm not making this difficult. I'm making it consistent.",
+      "conditional_dialog": [
+        {
+          "condition_item": "requirements_documentation",
+          "dialog": "You used the template. I can tell. The requirements are formatted correctly. This is what the OPA is for — consistent, usable output that future projects can actually reference."
+        }
+      ]
+    },
+    {
+      "id": "oracle",
+      "name": "The Oracle of Process",
+      "type": "oracle",
+      "flavor": "She speaks only in questions, which is somehow still more helpful than your last PMO.",
+      "hints": [
+        {
+          "trigger_missing_item": "project_management_plan",
+          "tier_1": "Before you can plan any specific area, what overarching framework must first be established?",
+          "tier_2": "All subsidiary plans live inside one master document. It must be built first, from the charter, through structured collaboration.",
+          "tier_3": "You need the Project Management Plan. Use your signed Project Charter and the Meetings technique at the Apothecary."
+        },
+        {
+          "trigger_missing_item": "scope_management_plan",
+          "tier_1": "How do you plan for planning? What document defines how scope itself will be managed?",
+          "tier_2": "The scope management plan defines the rules for every scope process that follows. It requires both the charter and the broader project management plan.",
+          "tier_3": "You need the Scope Management Plan. Bring the Project Management Plan and the signed Project Charter to the Apothecary. Apply Expert Judgment."
+        },
+        {
+          "trigger_missing_item": "requirements_template",
+          "tier_1": "Your organization has done this before. What did they leave behind that could help you?",
+          "tier_2": "Organizational Process Assets exist to help you avoid reinventing the wheel. Someone in this chapter has something that belongs to you.",
+          "tier_3": "Visit the PMO Office. Gerald from the PMO has the Requirements Template — an OPA your organization requires for requirements collection. You cannot complete the recipe without it."
+        },
+        {
+          "trigger_missing_item": "raw_stakeholder_needs",
+          "tier_1": "Requirements come from somewhere. Where do stakeholders express what they need?",
+          "tier_2": "You cannot document what you have not gathered. The field holds the raw material. But something there does not want you to have it.",
+          "tier_3": "Go to the Requirements Bazaar. Defeat The Vague Requirement to access the sensible stakeholders and collect the Raw Stakeholder Needs."
+        },
+        {
+          "trigger_missing_item": "requirements_documentation",
+          "tier_1": "Raw needs are not requirements. What separates a want from a documented requirement?",
+          "tier_2": "Analysis. Structure. Documentation. The Stakeholder Register tells you who. The Raw Needs tell you what they said. A structured gathering technique turns them into something formal.",
+          "tier_3": "Bring the Stakeholder Register and Raw Stakeholder Needs to the Apothecary with Data Gathering. Remember: Gerald's template is required. Visit the PMO if you haven't."
+        },
+        {
+          "trigger_missing_item": "project_scope_statement",
+          "tier_1": "Requirements document what stakeholders need. What formally describes what the project will deliver — and what it won't?",
+          "tier_2": "Scope is more than a list of wants. It must state inclusions and exclusions. It requires requirements as an input and analysis as a technique.",
+          "tier_3": "Bring Requirements Documentation and the signed Project Charter to the Apothecary. Apply Data Analysis or Decision Making to produce the Project Scope Statement."
+        },
+        {
+          "trigger_missing_item": "wbs",
+          "tier_1": "The scope statement describes what to build. What breaks that description into manageable, assignable pieces?",
+          "tier_2": "Decomposition takes deliverables and subdivides them — again and again — until each piece can be estimated and assigned. The process needs both the scope statement and a plan for how to do the decomposing.",
+          "tier_3": "Bring the Project Scope Statement and the Scope Management Plan to the Apothecary. Apply Decomposition. The output is the WBS and WBS Dictionary."
+        },
+        {
+          "trigger_missing_item": "scope_baseline",
+          "tier_1": "A scope statement and a WBS are useful. What makes them official and change-controlled?",
+          "tier_2": "Three components form the baseline: the scope statement, the WBS, and the WBS Dictionary. When approved together, they become the formal benchmark.",
+          "tier_3": "Bring the Project Scope Statement and the WBS to the Apothecary. Apply Expert Judgment to establish the Scope Baseline — the approved combination of all three scope components."
+        }
+      ]
+    }
+  ],
+
+  "eefs": [],
+
+  "win_condition": {
+    "type": "hold_item",
+    "item_id": "approved_scope_baseline",
+    "victory_text": "The Scope Vault is sealed. The Scope Baseline is defended. You have completed the Develop Project Management Plan, Plan Scope Management, Collect Requirements, Define Scope, and Create WBS processes — five of Planning's twenty-four. The sequence held. The baseline holds. Ahead: the schedule and cost territories, where activity sequencing, duration estimating, and budget development await. Scope Creep will attempt to return through every change request you ever receive. The baseline is your answer. Keep it.",
+    "next_chapter": "chapter_03.json"
+  }
+}

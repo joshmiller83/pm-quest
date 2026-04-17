@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PM Quest: The ITTO RPG</title>
+  <link rel="stylesheet" href="css/shared.css">
+  <link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+
+  <!-- Top bar -->
+  <div id="top-bar">
+    <div id="chapter-info">
+      <div id="chapter-label">Now Playing</div>
+      <div id="chapter-title-display">Loading…</div>
+    </div>
+    <div id="hp-section">
+      <span id="hp-label">HP</span>
+      <div id="hp-bar-track">
+        <div id="hp-bar-fill"></div>
+      </div>
+      <span id="hp-text">—</span>
+    </div>
+    <a href="index.html" class="btn btn-secondary" id="home-btn">← Menu</a>
+  </div>
+
+  <!-- Main game area -->
+  <div id="game-area">
+
+    <!-- Left panel: location, navigation, actions -->
+    <div id="left-panel">
+      <div id="location-header">
+        <div id="location-name"></div>
+        <div id="location-description"></div>
+      </div>
+      <div id="eef-box" class="hidden"></div>
+      <div id="navigation-section">
+        <div class="section-header">
+          <span class="section-label">Travel To</span>
+          <div class="section-rule"></div>
+        </div>
+        <div id="node-list" class="node-list"></div>
+      </div>
+      <div id="actions-section">
+        <div class="section-header">
+          <span class="section-label">Actions</span>
+          <div class="section-rule"></div>
+        </div>
+        <div id="action-list" class="action-list"></div>
+      </div>
+    </div>
+
+    <!-- Right sidebar: Briefcase/inventory -->
+    <aside id="right-sidebar">
+      <div id="sidebar-header">
+        <div id="sidebar-title">☰ Briefcase</div>
+      </div>
+      <div class="tab-bar" id="inventory-tabs">
+        <button class="tab-btn active" data-tab="all">All</button>
+        <button class="tab-btn" data-tab="artifact">Artifacts</button>
+        <button class="tab-btn" data-tab="resource">Resources</button>
+        <button class="tab-btn" data-tab="junk">Junk</button>
+      </div>
+      <div id="inventory-list"></div>
+    </aside>
+
+  </div>
+
+  <!-- Dialog bar (fixed bottom) -->
+  <div id="dialog-bar" class="hidden">
+    <div class="dialog-avatar" id="dialog-avatar">?</div>
+    <div class="dialog-content">
+      <div class="dialog-npc-name" id="dialog-npc-name"></div>
+      <div class="dialog-text" id="dialog-text"></div>
+    </div>
+    <button class="btn btn-continue" id="dialog-continue-btn" data-action="dialog-continue">
+      Continue →
+    </button>
+  </div>
+
+  <!-- ── Modals ──────────────────────────────────────────── -->
+
+  <!-- Intro modal -->
+  <div class="modal-overlay" id="intro-modal">
+    <div class="modal">
+      <div class="modal-icon">🗺️</div>
+      <h2 class="modal-title" id="intro-chapter-title"></h2>
+      <div class="modal-body" id="intro-text"></div>
+      <div class="modal-actions">
+        <button class="btn btn-primary" data-action="begin-game">▶ Begin</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Info modal (generic: locked node, OPA warnings, etc.) -->
+  <div class="modal-overlay" id="info-modal">
+    <div class="modal">
+      <div class="modal-icon" id="info-icon">ℹ️</div>
+      <h2 class="modal-title" id="info-title"></h2>
+      <div class="modal-body" id="info-body"></div>
+      <div class="modal-actions">
+        <button class="btn btn-primary" data-action="close-info">Got It</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Combat modal -->
+  <div class="modal-overlay" id="combat-modal">
+    <div class="modal modal-wide">
+      <div class="combat-enemy-header">
+        <div class="combat-enemy-name" id="combat-enemy-name"></div>
+        <div class="combat-hp-track">
+          <div class="combat-hp-fill" id="combat-hp-fill"></div>
+        </div>
+        <div class="combat-hp-text" id="combat-hp-text"></div>
+      </div>
+      <div class="combat-dialog-box" id="combat-dialog"></div>
+      <div class="combat-actions" id="combat-actions">
+        <button class="btn btn-danger" data-action="combat-use-item">⚔ Use Item</button>
+        <button class="btn btn-secondary" data-action="combat-stall">⏳ Stall</button>
+        <button class="btn btn-secondary" data-action="combat-retreat">↩ Retreat</button>
+      </div>
+      <div class="combat-result" id="combat-result"></div>
+    </div>
+  </div>
+
+  <!-- Item picker (used by combat + crafting) -->
+  <div class="modal-overlay" id="item-picker-modal">
+    <div class="modal">
+      <h2 class="modal-title" id="item-picker-title">Choose an Item</h2>
+      <div id="item-picker-grid"></div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" data-action="close-item-picker">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Crafting (Apothecary) modal -->
+  <div class="modal-overlay" id="crafting-modal">
+    <div class="modal modal-wide">
+      <h2 class="modal-title">⚗ The Apothecary</h2>
+      <div class="apothecary-intro" id="apothecary-npc-dialog"></div>
+      <div class="craft-slots">
+        <div class="craft-slot">
+          <div class="craft-slot-label">Input 1</div>
+          <button class="craft-slot-btn" id="slot-input1" data-action="pick-input1">
+            <span>+ Pick Item</span>
+          </button>
+        </div>
+        <div class="craft-slot">
+          <div class="craft-slot-label">Input 2 (optional)</div>
+          <button class="craft-slot-btn" id="slot-input2" data-action="pick-input2">
+            <span>+ Pick Item</span>
+          </button>
+        </div>
+        <div class="craft-slot">
+          <div class="craft-slot-label">Technique</div>
+          <select class="craft-technique-select" id="craft-technique">
+            <option value="">— Select —</option>
+          </select>
+        </div>
+      </div>
+      <div id="opa-warning" class="opa-warning hidden"></div>
+      <div class="craft-attempt-row">
+        <button class="btn btn-primary" data-action="attempt-craft">Attempt Craft</button>
+      </div>
+      <div class="craft-output" id="craft-output">
+        Select inputs and a technique, then attempt the craft.
+      </div>
+      <div class="modal-actions" style="margin-top:1rem;">
+        <button class="btn btn-secondary" data-action="close-crafting">Close Apothecary</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Oracle modal -->
+  <div class="modal-overlay" id="oracle-modal">
+    <div class="modal">
+      <div class="modal-icon">✦</div>
+      <h2 class="modal-title">The Oracle of Process</h2>
+      <div class="oracle-flavor" id="oracle-flavor"></div>
+      <div id="oracle-topics" class="oracle-topics"></div>
+      <div id="oracle-hint-box" class="oracle-hint-box hidden"></div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" id="oracle-back-btn" class="hidden" data-action="oracle-back">← Back</button>
+        <button class="btn btn-primary" data-action="close-oracle">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Victory modal -->
+  <div class="modal-overlay" id="victory-modal">
+    <div class="modal">
+      <div class="modal-icon">🏆</div>
+      <h2 class="modal-title">Chapter Complete!</h2>
+      <div class="modal-body" id="victory-text"></div>
+      <div class="modal-actions">
+        <button class="btn btn-primary" data-action="next-chapter">Continue to Next Chapter →</button>
+        <a href="index.html" class="btn btn-secondary">Return to Menu</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Defeat modal -->
+  <div class="modal-overlay" id="defeat-modal">
+    <div class="modal">
+      <div class="modal-icon">💀</div>
+      <h2 class="modal-title">You Blacked Out</h2>
+      <div class="modal-body">
+        The world fades to black. When you come to, you find yourself back at a safe location. Your briefcase is intact — you didn't lose anything. The project lives on.
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-danger" id="defeat-try-again" data-action="defeat-try-again">⚔ Try Again</button>
+        <button class="btn btn-secondary" data-action="defeat-to-map">Return to Map</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

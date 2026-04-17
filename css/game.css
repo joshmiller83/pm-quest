@@ -1,0 +1,821 @@
+/* ── PM Quest: Game Engine Styles ────────────────────────── */
+
+/* ── Page layout ─────────────────────────────────────────── */
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ── Top bar ─────────────────────────────────────────────── */
+
+#top-bar {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.6rem 1.25rem;
+  background: linear-gradient(180deg, #0d1629 0%, var(--navy) 100%);
+  border-bottom: 2px solid var(--gold);
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+#chapter-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+#chapter-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+#chapter-title-display {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#hp-section {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+#hp-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+#hp-bar-track {
+  width: 120px;
+  height: 8px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+#hp-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease, background 0.3s ease;
+  background: var(--success);
+}
+
+#hp-bar-fill.hp-mid { background: var(--warning); }
+#hp-bar-fill.hp-low { background: var(--danger); }
+
+#hp-text {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--white);
+  min-width: 60px;
+  text-align: right;
+}
+
+#home-btn {
+  font-size: 0.75rem;
+  padding: 0.3rem 0.7rem;
+  margin-left: 0.5rem;
+}
+
+/* ── Main game area ──────────────────────────────────────── */
+
+#game-area {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ── Left panel ──────────────────────────────────────────── */
+
+#left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow-y: auto;
+  padding: 1.25rem;
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Location */
+#location-header {
+  margin-bottom: 1rem;
+}
+
+#location-name {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--gold);
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+#location-description {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+/* EEF flavor */
+#eef-box {
+  background: rgba(201,168,76,0.06);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-left: 3px solid var(--gold);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  font-size: 0.8rem;
+  color: var(--gold-lt);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+/* Navigation */
+#navigation-section {
+  margin-bottom: 1rem;
+}
+
+.node-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.node-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--navy-mid);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 8px;
+  padding: 0.65rem 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  font-size: 0.88rem;
+}
+
+.node-card:hover:not(.node-locked) {
+  border-color: var(--gold);
+  background: rgba(36,50,96,0.8);
+}
+
+.node-card.node-locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.node-card.node-enemy {
+  border-color: rgba(192,57,43,0.3);
+}
+
+.node-card.node-enemy:hover {
+  border-color: var(--danger);
+}
+
+.node-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+  width: 1.5rem;
+  text-align: center;
+}
+
+.node-name {
+  flex: 1;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.node-lock-hint {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.node-arrow {
+  color: var(--muted);
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+/* Actions */
+#actions-section {
+  margin-bottom: 0.5rem;
+}
+
+.action-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.action-btn {
+  justify-content: flex-start;
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+  border-radius: 8px;
+}
+
+/* ── Right sidebar: Briefcase ────────────────────────────── */
+
+#right-sidebar {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: rgba(0,0,0,0.15);
+}
+
+#sidebar-header {
+  padding: 0.9rem 1rem 0.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  flex-shrink: 0;
+}
+
+#sidebar-title {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* Inventory tabs */
+.tab-bar {
+  display: flex;
+  gap: 0;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  flex-shrink: 0;
+}
+
+.tab-btn {
+  flex: 1;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.25rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--muted);
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+  font-family: inherit;
+}
+
+.tab-btn:hover { color: var(--white); }
+.tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+/* Inventory grid */
+#inventory-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.item-card {
+  background: var(--navy-mid);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 7px;
+  padding: 0.6rem 0.75rem;
+  cursor: pointer;
+  transition: border-color 0.12s;
+}
+
+.item-card:hover { border-color: rgba(201,168,76,0.4); }
+
+.item-card-top {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.item-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.item-name {
+  flex: 1;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.2;
+}
+
+.item-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.item-power {
+  font-size: 0.65rem;
+  color: var(--muted);
+}
+
+.item-description {
+  display: none;
+  font-size: 0.75rem;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.item-card.expanded .item-description { display: block; }
+
+.item-card.junk { opacity: 0.7; }
+
+#inventory-empty {
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ── Dialog bar ──────────────────────────────────────────── */
+
+#dialog-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, rgba(26,39,68,0.95) 0%, #0d1629 100%);
+  border-top: 2px solid var(--gold);
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  z-index: 50;
+  backdrop-filter: blur(4px);
+}
+
+.dialog-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--navy-mid);
+  border: 2px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.dialog-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.dialog-npc-name {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.dialog-tier {
+  font-size: 0.6rem;
+  color: var(--muted);
+  margin-left: 0.5rem;
+}
+
+.dialog-text {
+  font-size: 0.88rem;
+  color: var(--white);
+  line-height: 1.55;
+  font-style: italic;
+}
+
+#dialog-continue-btn {
+  flex-shrink: 0;
+  align-self: flex-end;
+}
+
+/* ── Toast notification ──────────────────────────────────── */
+
+.toast {
+  position: fixed;
+  bottom: 5rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  background: var(--navy-mid);
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  padding: 0.6rem 1.25rem;
+  font-size: 0.82rem;
+  color: var(--white);
+  z-index: 150;
+  animation: toast-in 0.2s ease, toast-out 0.3s ease 2.2s forwards;
+  white-space: nowrap;
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(8px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+@keyframes toast-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* ── Combat modal ────────────────────────────────────────── */
+
+#combat-modal .modal {
+  max-width: 600px;
+}
+
+.combat-enemy-header {
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+.combat-enemy-name {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.01em;
+}
+
+.combat-enemy-name::before {
+  content: '⚔ ';
+  color: var(--danger);
+}
+
+.combat-hp-track {
+  margin: 0.6rem auto;
+  max-width: 320px;
+  height: 10px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.combat-hp-fill {
+  height: 100%;
+  border-radius: 5px;
+  background: var(--danger);
+  transition: width 0.4s ease;
+}
+
+.combat-hp-text {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 0.25rem;
+}
+
+.combat-dialog-box {
+  background: rgba(0,0,0,0.2);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-left: 3px solid var(--danger);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.55;
+  font-style: italic;
+  margin-bottom: 1.25rem;
+  min-height: 3.5rem;
+}
+
+.combat-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.combat-result {
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-align: center;
+  min-height: 1.5rem;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.combat-result.result-good { color: var(--success); font-style: normal; }
+.combat-result.result-bad  { color: var(--danger); font-style: normal; }
+.combat-result.result-warn { color: var(--warning); font-style: normal; }
+
+/* ── Item picker modal ───────────────────────────────────── */
+
+#item-picker-modal { z-index: 300; }
+
+#item-picker-modal .modal {
+  max-width: 480px;
+}
+
+#item-picker-title {
+  margin-bottom: 1rem;
+}
+
+#item-picker-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-height: 320px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+}
+
+.picker-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--navy);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 7px;
+  padding: 0.6rem 0.85rem;
+  cursor: pointer;
+  transition: border-color 0.12s;
+  text-align: left;
+  width: 100%;
+  font-family: inherit;
+  color: var(--white);
+}
+
+.picker-item:hover:not(.picker-item-dimmed) { border-color: var(--gold); }
+
+.picker-item-dimmed {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.picker-item-icon { font-size: 1rem; flex-shrink: 0; }
+.picker-item-name { flex: 1; font-size: 0.85rem; font-weight: 600; }
+.picker-item-power { font-size: 0.72rem; color: var(--muted); }
+
+/* ── Crafting (Apothecary) modal ─────────────────────────── */
+
+#crafting-modal .modal {
+  max-width: 680px;
+}
+
+.apothecary-intro {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+.craft-slots {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.craft-slot {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.craft-slot-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.craft-slot-btn {
+  background: var(--navy);
+  border: 1.5px dashed rgba(255,255,255,0.15);
+  border-radius: 8px;
+  padding: 0.75rem;
+  cursor: pointer;
+  text-align: center;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  transition: border-color 0.15s;
+  width: 100%;
+  font-family: inherit;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.craft-slot-btn:hover { border-color: var(--gold); color: var(--white); }
+
+.craft-slot-btn.slot-filled {
+  border-style: solid;
+  border-color: rgba(201,168,76,0.4);
+  color: var(--white);
+}
+
+.craft-slot-filled-icon { font-size: 1.25rem; }
+.craft-slot-filled-name { font-size: 0.78rem; font-weight: 600; line-height: 1.2; }
+
+.craft-technique-select {
+  width: 100%;
+  background: var(--navy);
+  border: 1.5px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  padding: 0.6rem 0.75rem;
+  color: var(--white);
+  font-size: 0.85rem;
+  font-family: inherit;
+  cursor: pointer;
+  min-height: 80px;
+  height: auto;
+  transition: border-color 0.15s;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%239aa5b4' d='M0 0l6 8 6-8z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+}
+
+.craft-technique-select:focus { outline: none; border-color: var(--gold); }
+
+.craft-technique-select option {
+  background: var(--navy-mid);
+  color: var(--white);
+}
+
+.opa-warning {
+  background: rgba(201,168,76,0.08);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-left: 3px solid var(--gold);
+  border-radius: 6px;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.78rem;
+  color: var(--gold-lt);
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+}
+
+.craft-attempt-row {
+  display: flex;
+  justify-content: center;
+  margin: 0.75rem 0;
+}
+
+.craft-output {
+  background: rgba(0,0,0,0.15);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 8px;
+  padding: 1rem;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.craft-output.output-success {
+  border-color: var(--success);
+  background: rgba(39,174,96,0.08);
+  font-style: normal;
+  flex-direction: column;
+  gap: 0.4rem;
+  text-align: center;
+}
+
+.craft-output.output-fail {
+  border-color: var(--danger);
+  background: rgba(192,57,43,0.08);
+  font-style: normal;
+  color: #e88;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
+  line-height: 1.55;
+}
+
+.craft-output-title { font-weight: 700; color: var(--success); font-size: 0.9rem; }
+.craft-output-dialog { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
+
+/* ── Oracle modal ────────────────────────────────────────── */
+
+#oracle-modal .modal {
+  max-width: 560px;
+}
+
+.oracle-flavor {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+.oracle-topics {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.oracle-topic-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--navy);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  font-family: inherit;
+  color: var(--white);
+  font-size: 0.85rem;
+  transition: border-color 0.12s;
+}
+
+.oracle-topic-btn:hover { border-color: var(--gold); }
+
+.oracle-topic-name { flex: 1; font-weight: 600; }
+.oracle-tier { font-size: 0.65rem; color: var(--muted); }
+
+.oracle-hint-box {
+  background: rgba(0,0,0,0.2);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-left: 3px solid var(--gold);
+  border-radius: 6px;
+  padding: 1rem;
+  font-size: 0.88rem;
+  color: var(--parchment);
+  line-height: 1.65;
+  font-style: italic;
+  margin-bottom: 1.25rem;
+  text-align: center;
+}
+
+/* ── Victory/defeat modals ───────────────────────────────── */
+
+#victory-modal .modal-body { color: var(--parchment); font-style: italic; }
+#defeat-modal .modal-icon { font-size: 3rem; }
+
+/* ── Responsive ──────────────────────────────────────────── */
+
+@media (max-width: 700px) {
+  #game-area {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+  }
+
+  #right-sidebar {
+    max-height: 200px;
+    border-right: none;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  #inventory-list {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.5rem;
+  }
+
+  .item-card {
+    min-width: 140px;
+  }
+
+  .craft-slots {
+    grid-template-columns: 1fr;
+  }
+
+  .combat-actions {
+    flex-direction: column;
+  }
+}

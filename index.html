@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PM Quest: The ITTO RPG</title>
+  <link rel="stylesheet" href="css/shared.css">
   <style>
     :root {
       --navy:     #1a2744;
@@ -477,7 +478,7 @@
   <script>
     // ── Constants ───────────────────────────────────────────
     const SAVE_PREFIX    = 'pm_quest_save_';
-    const ENGINE_URL     = 'pm_quest.html';
+    const ENGINE_URL     = 'game.html';
     const CHAPTER_INDEX  = 'chapters/index.json';
 
     const PROCESS_GROUP_ICONS = {
@@ -501,9 +502,7 @@
     }
 
     function engineExists() {
-      // We optimistically check: if the file is served we'll find out on nav.
-      // For now, we always show the coming-soon modal.
-      return false;
+      return true;
     }
 
     // ── Modal ────────────────────────────────────────────────

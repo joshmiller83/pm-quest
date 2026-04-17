@@ -10,9 +10,9 @@
     {
       "id": "chapter_02",
       "file": "chapters/chapter_02.json",
-      "title": "The Planning Territories",
+      "title": "The Planning Territories: Scope",
       "process_group": "Planning (Scope)",
-      "status": "coming_soon"
+      "status": "available"
     },
     {
       "id": "chapter_03",
